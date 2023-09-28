@@ -1,63 +1,47 @@
-import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:logger/logger.dart';
 
-enum XCallType {
-  voice,
-  video;
+final logger = Logger();
 
-  static XCallType fromString(String str) {
-    return str == 'Url' ? voice : video;
-  }
-}
+enum XCallType { audio, video }
 
-class XCall {
-  final String id;
+class Call {
   final String from;
   final String to;
-  final String chatId;
+  final String channelName;
+  final String token;
   final List<String> ids;
   final XCallType type;
-  final String relationId;
-  final bool answered;
+  final bool missed;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
-  const XCall({
-    required this.id,
+  Call({
     required this.from,
     required this.to,
-    required this.chatId,
-    required this.relationId,
-    required this.type,
+    required this.channelName,
+    required this.token,
     required this.ids,
-    required this.answered,
+    required this.type,
+    required this.missed,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
-  factory XCall.fromJson(json) {
-    return XCall(
-      id: json['id'],
-      from: json['from'],
-      to: json['to'],
-      chatId: json['chatId'],
-      ids: List<String>.from(json['ids']),
-      answered: json["answered"] ?? false,
-      relationId: json['relationId'],
-      type: XCallType.fromString(json['type']),
-    );
-  }
-
-  Map<String, dynamic> toJson([bool toStr = false]) {
-    return <String, dynamic>{
-      'id': id,
+  // Convert a Call object into a map
+  Map<String, dynamic> toMap() {
+    return {
       'from': from,
       'to': to,
+      'channelName': channelName,
+      'token': token,
       'ids': ids,
-      'chatId': chatId,
-      'answered': answered,
-      'relationId': relationId,
-      'type': type.name,
+      'type': type.toString().split('.').last, // convert enum to string
+      'missed': missed,
+      'createdAt':
+          Timestamp.fromDate(createdAt), // convert DateTime to Timestamp
+      'updatedAt':
+          Timestamp.fromDate(updatedAt), // convert DateTime to Timestamp
     };
   }
-
-  @override
-  String toString() => jsonEncode(toJson(true));
-
-  List<Object?> get props => [id];
 }

@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 
-class OutgoingCallScreen extends StatefulWidget {
-  final VoidCallback onMute;
+class IncomingCallScreen extends StatefulWidget {
   final VoidCallback onHangUp;
-  final VoidCallback onLoudSpeaker;
+  final VoidCallback onAnswer;
 
-  const OutgoingCallScreen({
+  const IncomingCallScreen({
     super.key,
-    required this.onMute,
     required this.onHangUp,
-    required this.onLoudSpeaker,
+    required this.onAnswer,
   });
 
   @override
-  State<OutgoingCallScreen> createState() => _OutgoingCallScreenState();
+  State<IncomingCallScreen> createState() => _IncomingCallScreenState();
 }
 
-class _OutgoingCallScreenState extends State<OutgoingCallScreen> {
-  bool isMute = false;
-  bool isLoud = false;
+class _IncomingCallScreenState extends State<IncomingCallScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +33,7 @@ class _OutgoingCallScreenState extends State<OutgoingCallScreen> {
             children: <Widget>[
               const SizedBox(height: 50),
               Text(
-                'Calling...',
+                'Incoming Call',
                 style: TextStyle(color: Colors.grey, fontSize: 30),
               ),
               const SizedBox(height: 50),
@@ -54,7 +50,10 @@ class _OutgoingCallScreenState extends State<OutgoingCallScreen> {
                   SizedBox(width: 18.0),
                   Text(
                     'John Doe',
-                    style: TextStyle(color: Colors.grey, fontSize: 24),
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 24,
+                    ),
                   ),
                 ],
               ),
@@ -65,33 +64,14 @@ class _OutgoingCallScreenState extends State<OutgoingCallScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   FloatingActionButton(
-                    onPressed: () => {
-                      widget.onMute,
-                      setState(
-                        () {
-                          isMute = !isMute;
-                        },
-                      )
-                    },
-                    backgroundColor: isMute ? Colors.white : Colors.grey,
-                    child: const Icon(Icons.mic_off),
-                  ),
-                  FloatingActionButton(
                     onPressed: widget.onHangUp,
                     backgroundColor: Colors.red,
                     child: const Icon(Icons.call_end),
                   ),
                   FloatingActionButton(
-                    onPressed: () => {
-                      widget.onLoudSpeaker,
-                      setState(
-                        () {
-                          isLoud = !isLoud;
-                        },
-                      )
-                    },
-                    backgroundColor: isLoud ? Colors.white : Colors.grey,
-                    child: const Icon(Icons.volume_up),
+                    onPressed: widget.onAnswer,
+                    backgroundColor: Colors.green,
+                    child: const Icon(Icons.phone),
                   ),
                 ],
               ),

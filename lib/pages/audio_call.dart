@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:agora_flutter/pages/components/outgoing_call.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,8 @@ import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'package:agora_flutter/config/config.dart';
+
+import '../models/models.dart';
 
 class OutgoingCall extends StatefulWidget {
   const OutgoingCall({Key? key}) : super(key: key);
@@ -16,7 +19,7 @@ class OutgoingCall extends StatefulWidget {
 }
 
 class _OutgoingCallState extends State<OutgoingCall> {
-  // uid of the local user
+  late final CollectionReference<Map<String, dynamic>> callsRef;
 
   int? _remoteUid; // uid of the remote user
   bool _isJoined = false; // Indicates if the local user has joined the channel
@@ -73,6 +76,48 @@ class _OutgoingCallState extends State<OutgoingCall> {
       options: options,
       uid: uid,
     );
+    Call call = Call(
+      from: 'OLHQL8STqGRcSq0X4Qn8',
+      to: 'OLHQL8STqGRcSq0X4Qn8',
+      channelName: 'OLHQL8STqGRcSq0X4Qn8OLHQL8STqGRcSq0X4Qn8',
+      token: token,
+      ids: ['OLHQL8STqGRcSq0X4Qn8', 'OLHQL8STqGRcSq0X4Qn8'],
+      type: XCallType.audio, // or XCallType.video
+      missed: false, // or true
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
+    final firestoreInstance = FirebaseFirestore.instance;
+    firestoreInstance.collection('Calls').add(call.toMap()).then((docRef) {
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('Document written with ID: ${docRef.id}');
+      print('*****************************************************');
+    }).catchError((error) {
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('*****************************************************');
+      print('Error: $error');
+      print('*****************************************************');
+    });
   }
 
   void leave() {

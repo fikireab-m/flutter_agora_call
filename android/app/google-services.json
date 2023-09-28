@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "548427842369",
+    "project_id": "friend-zone-22e6b",
+    "storage_bucket": "friend-zone-22e6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548427842369:android:ca7aa39717e8f817bb57c0",
+        "android_client_info": {
+          "package_name": "com.brannatech.friend_zone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548427842369-8rd3mr7kohkdojlfgtc1e7tphcppni0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD852NhAqH-P5NUaoKJW159bgYZai5jqXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548427842369-8rd3mr7kohkdojlfgtc1e7tphcppni0f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "548427842369-epuj9n77cn3i5bclhsleo37ktpc8ncif.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.agoraFlutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548427842369:android:1c00725c15797a6fbb57c0",
+        "android_client_info": {
+          "package_name": "com.example.agora_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548427842369-8rd3mr7kohkdojlfgtc1e7tphcppni0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD852NhAqH-P5NUaoKJW159bgYZai5jqXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548427842369-8rd3mr7kohkdojlfgtc1e7tphcppni0f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "548427842369-epuj9n77cn3i5bclhsleo37ktpc8ncif.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.agoraFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

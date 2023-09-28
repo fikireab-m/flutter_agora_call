@@ -1,12 +1,27 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 import 'package:agora_flutter/pages/audio_call.dart';
 import 'package:agora_flutter/pages/video_call.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(
-      const MaterialApp(
-        home: Home(),
-      ),
-    );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  )
+      .then(
+        (value) => print("initialized: $value"),
+      )
+      .catchError(
+        (onError) => print(onError),
+      );
+  runApp(
+    const MaterialApp(
+      home: Home(),
+    ),
+  );
+}
 
 class Home extends StatelessWidget {
   const Home({super.key});
