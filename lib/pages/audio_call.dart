@@ -19,8 +19,7 @@ class OutgoingCall extends StatefulWidget {
 }
 
 class _OutgoingCallState extends State<OutgoingCall> {
-  late final CollectionReference<Map<String, dynamic>> callsRef;
-
+  String channel = '';
   int? _remoteUid; // uid of the remote user
   bool _isJoined = false; // Indicates if the local user has joined the channel
   late RtcEngine agoraEngine; // Agora engine instance
@@ -72,51 +71,31 @@ class _OutgoingCallState extends State<OutgoingCall> {
 
     await agoraEngine.joinChannel(
       token: token,
-      channelId: channelName,
+      channelId: channel,
       options: options,
       uid: uid,
     );
-    Call call = Call(
+
+    XCall call = XCall(
       from: 'OLHQL8STqGRcSq0X4Qn8',
       to: 'OLHQL8STqGRcSq0X4Qn8',
-      channelName: 'OLHQL8STqGRcSq0X4Qn8OLHQL8STqGRcSq0X4Qn8',
+      channelName: channel,
       token: token,
       ids: ['OLHQL8STqGRcSq0X4Qn8', 'OLHQL8STqGRcSq0X4Qn8'],
-      type: XCallType.audio, // or XCallType.video
+      type: XCallType.audio,
       missed: false, // or true
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     );
     final firestoreInstance = FirebaseFirestore.instance;
     firestoreInstance.collection('Calls').add(call.toMap()).then((docRef) {
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('Document written with ID: ${docRef.id}');
-      print('*****************************************************');
+      logger.i('*****************************************************');
+      logger.i('Document written with ID: ${docRef.id}');
+      logger.i('*****************************************************');
     }).catchError((error) {
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('*****************************************************');
-      print('Error: $error');
-      print('*****************************************************');
+      logger.i('*****************************************************');
+      logger.i('Error: $error');
+      logger.i('*****************************************************');
     });
   }
 
@@ -130,6 +109,7 @@ class _OutgoingCallState extends State<OutgoingCall> {
 
   @override
   void initState() {
+    channel = 'OLHQL8STqGRcSq0X4Qn8OLHQL8STqGRcSq0X4Qn8';
     super.initState();
     // Set up an instance of Agora engine
     setupVoiceSDKEngine();

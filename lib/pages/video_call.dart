@@ -14,7 +14,7 @@ class _VideoCallState extends State<VideoCall> {
   final AgoraClient client = AgoraClient(
     agoraConnectionData: AgoraConnectionData(
       appId: appId,
-      channelName: channelName,
+      channelName: "channel1",
       tempToken: token,
       uid: uid,
     ),

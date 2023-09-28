@@ -5,7 +5,7 @@ final logger = Logger();
 
 enum XCallType { audio, video }
 
-class Call {
+class XCall {
   final String from;
   final String to;
   final String channelName;
@@ -16,7 +16,7 @@ class Call {
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  Call({
+  XCall({
     required this.from,
     required this.to,
     required this.channelName,
